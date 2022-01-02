@@ -20,8 +20,8 @@ pub fn lcm(m: u64, n: u64) -> u64 {
 }
 
 pub struct Primes {
-    primes: LinkedList<u32>,
-    next: u32,
+    primes: LinkedList<u64>,
+    next: u64,
 }
 
 impl Primes {
@@ -31,7 +31,7 @@ impl Primes {
             next: 2,
         }
     }
-    fn is_prime(&self, n: u32) -> bool {
+    fn is_prime(&self, n: u64) -> bool {
         for p in &self.primes {
             if n % p == 0 {
                 return false;
@@ -42,8 +42,8 @@ impl Primes {
 }
 
 impl Iterator for Primes {
-    type Item = u32;
-    fn next(&mut self) -> Option<u32> {
+    type Item = u64;
+    fn next(&mut self) -> Option<u64> {
         loop {
             if self.is_prime(self.next) {
                 let current = self.next;
