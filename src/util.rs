@@ -1,5 +1,24 @@
 use std::collections::LinkedList;
 
+/// Returns the greatest common divisor of m and n.
+pub fn gcd(mut m: u64, mut n: u64) -> u64 {
+    assert!(m != 0 && n != 0);
+    while m != 0 {
+        if m < n {
+            let t = m;
+            m = n;
+            n = t;
+        }
+        m = m % n;
+    }
+    n
+}
+
+/// Returns the least common multiplier of m and n.
+pub fn lcm(m: u64, n: u64) -> u64 {
+    (m * n) / gcd(m, n)
+}
+
 pub struct Primes {
     primes: LinkedList<u32>,
     next: u32,
