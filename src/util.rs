@@ -1,4 +1,4 @@
-use std::collections::LinkedList;
+use std::collections::{BTreeMap, LinkedList};
 
 /// Returns the greatest common divisor of m and n.
 pub fn gcd(mut m: u64, mut n: u64) -> u64 {
@@ -17,6 +17,22 @@ pub fn gcd(mut m: u64, mut n: u64) -> u64 {
 /// Returns the least common multiplier of m and n.
 pub fn lcm(m: u64, n: u64) -> u64 {
     (m * n) / gcd(m, n)
+}
+
+/// Returns prime factorized result of a specified number as a map of prime factor to exponent
+pub fn factorize(mut n: u64) -> BTreeMap<u64, u64> {
+    let mut ret = BTreeMap::new();
+    for p in Primes::new() {
+        if p > n / 2 {
+            break;
+        }
+        while n % p == 0 {
+            let e = ret.entry(p).or_insert(0);
+            *e += 1;
+            n /= p;
+        }
+    }
+    ret
 }
 
 pub struct Primes {
