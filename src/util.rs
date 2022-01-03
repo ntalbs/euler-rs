@@ -121,3 +121,63 @@ impl Sieve {
         }
     }
 }
+
+#[test]
+#[should_panic]
+fn test_gcd_0_x() {
+    gcd(0, 10);
+}
+
+#[test]
+#[should_panic]
+fn test_gcd_x_0() {
+    gcd(10, 0);
+}
+
+#[test]
+fn test_gcd() {
+    assert_eq!(1, gcd(1, 10));
+    assert_eq!(1, gcd(10, 1));
+    assert_eq!(2, gcd(2, 10));
+    assert_eq!(4, gcd(4, 12));
+    assert_eq!(4, gcd(8, 12));
+    assert_eq!(3, gcd(6, 9));
+}
+
+#[test]
+fn test_lcm() {
+    assert_eq!(2 * 3, lcm(2, 3));
+    assert_eq!(3 * 5, lcm(3, 5));
+    assert_eq!(15, lcm(5, 15));
+}
+
+#[test]
+fn test_factorize() {
+    assert!(false);
+}
+
+#[test]
+fn test_prime_iter() {
+    let primes_under_20_ref: Vec<u64> = vec![2, 3, 5, 7, 11, 13, 17, 19];
+    let primes_under_20_gen: Vec<u64> = Primes::new().take_while(|x| x < &20_u64).collect();
+    assert_eq!(primes_under_20_ref, primes_under_20_gen);
+}
+
+#[test]
+fn test_prime_sieve() {
+    let primes_under_20_ref: Vec<usize> = vec![2, 3, 5, 7, 11, 13, 17, 19];
+    let sieve = Sieve::new(20);
+    for p in primes_under_20_ref {
+        assert!(sieve.is_prime(p));
+    }
+}
+
+#[test]
+fn test_prime_iter_with_sieve() {
+    let primes_iter = Primes::new().take_while(|p| p < &1000);
+    let sieve = Sieve::new(1000);
+
+    for p in primes_iter {
+        assert!(sieve.is_prime(p as usize));
+    }
+}
