@@ -49,7 +49,7 @@ impl Iterator for Primes {
                 let current = self.next;
                 self.primes.push_back(self.next);
                 self.next += 1;
-                return Some(current)
+                return Some(current);
             }
             self.next += 1;
         }
@@ -64,7 +64,7 @@ pub struct Sieve {
 impl Sieve {
     pub fn new(limit: usize) -> Self {
         let mut sieve = Sieve {
-            primes: Vec::with_capacity(limit/2),
+            primes: Vec::with_capacity(limit / 2),
             limit,
         };
         sieve.init();
@@ -77,12 +77,13 @@ impl Sieve {
             self.primes.push(true);
         }
 
+        // Skips even numbers, and even multipliers
         for n in (3..self.limit).step_by(2) {
-            for m in (3..).step_by(2) { // skip even factors
+            for m in (3..).step_by(2) {
                 if m * n >= self.limit {
                     break;
                 }
-                let i = (m * n - 1) / 2;     // array index for multiples of n
+                let i = (m * n - 1) / 2; // array index for multiples of n
                 self.primes[i] = false;
             }
         }
@@ -90,19 +91,17 @@ impl Sieve {
 
     pub fn is_prime(&self, n: usize) -> bool {
         match n {
-            0 | 1 => false,                // 0, 1 is not prime
-            2 => true,                     // 2 is prime
-            _ => if n % 2 == 0 {
-                false                      // even numbers other than 2 are not prime
-            } else {
-                self.primes[(n - 1) / 2]   // for odd numbers bigger than 2, check sieve
+            0 | 1 => false, // 0, 1 is not prime
+            2 => true,      // 2 is prime
+            _ => {
+                if n % 2 == 0 {
+                    // even numbers other than 2 are not prime
+                    false
+                } else {
+                    // for odd numbers bigger than 2, check sieve
+                    self.primes[(n - 1) / 2]
+                }
             }
-        }
-    }
-
-    pub fn print(&self) {
-        for i in 0..self.primes.len() {
-            println!("i={}, n={}, is_prime? {}, is_prime? {}", i, 2*i+1, self.primes[i], self.is_prime(2*i+1));
         }
     }
 }
