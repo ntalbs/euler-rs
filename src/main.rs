@@ -4,12 +4,14 @@ use std::time::Instant;
 
 mod p001;
 mod p002;
+mod p003;
 mod util;
 
 fn time(f: fn() -> u64) {
     let start = Instant::now();
     let ret = f();
-    println!("took {} ms: {}", start.elapsed().as_millis(), ret);
+    println!("Elapsed time: {} ms", start.elapsed().as_millis());
+    println!("Answer: {}", ret);
 }
 
 fn show_usage() {
@@ -26,7 +28,7 @@ fn main() {
 
     let prob_no = match args[1].parse::<u32>() {
         Ok(n) => n,
-        Err(e) => {
+        Err(_) => {
             show_usage();
             eprintln!("Error: problem number is not valid.");
             process::exit(1);
@@ -36,7 +38,11 @@ fn main() {
     let sol = match prob_no {
         1 => p001::sol,
         2 => p002::sol,
-        _ => panic!("not implemented yet"),
+        3 => p003::sol,
+        _ => {
+            eprintln!("Solution #{} not implemented yet", prob_no);
+            process::exit(1);
+        }
     };
 
     time(sol);
