@@ -84,9 +84,13 @@ impl Primes {
         }
     }
     fn is_prime(&self, n: u64) -> bool {
+        let limit = (n as f64).sqrt() as u64 + 1;
         for p in &self.primes {
             if n % p == 0 {
                 return false;
+            }
+            if *p > limit {
+                break;
             }
         }
         true
