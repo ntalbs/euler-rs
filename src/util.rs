@@ -23,7 +23,7 @@ pub fn lcm(m: u64, n: u64) -> u64 {
 pub fn factorize(mut n: u64) -> BTreeMap<u64, u64> {
     let mut ret = BTreeMap::new();
     for p in Primes::new() {
-        if p > n / 2 {
+        if n == 1 {
             break;
         }
         while n % p == 0 {
@@ -153,7 +153,20 @@ fn test_lcm() {
 
 #[test]
 fn test_factorize() {
-    assert!(false);
+    fn compare(input: u64, factors: BTreeMap<u64, u64>) {
+        let mut comp: u64 = 1;
+        for (p, e) in factors {
+            comp *= pow(p, e);
+        }
+        assert_eq!(input, comp);
+    }
+
+    let data = vec![2 * 3 * 5, 12 * 24 * 48];
+
+    for i in data {
+        compare(i, factorize(i));
+    }
+}
 }
 
 #[test]
