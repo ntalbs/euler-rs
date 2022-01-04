@@ -19,6 +19,14 @@ pub fn lcm(m: u64, n: u64) -> u64 {
     (m * n) / gcd(m, n)
 }
 
+pub fn pow(x: u64, e: u64) -> u64 {
+    let mut ret = 1;
+    for _ in 0..e {
+        ret *= x;
+    }
+    ret
+}
+
 /// Returns prime factorized result of a specified number as a map of prime factor to exponent
 pub fn factorize(mut n: u64) -> BTreeMap<u64, u64> {
     let mut ret = BTreeMap::new();
@@ -33,6 +41,34 @@ pub fn factorize(mut n: u64) -> BTreeMap<u64, u64> {
         }
     }
     ret
+}
+
+pub fn is_palindrome(mut n: u64) -> bool {
+    fn count_digits(mut n: u64) -> u64 {
+        let mut cnt = 1;
+        loop {
+            n /= 10;
+            if n == 0 {
+                break;
+            }
+            cnt += 1;
+        }
+        cnt
+    }
+
+    let mut num_digits = count_digits(n);
+
+    while num_digits > 1 {
+        let pow = pow(10, num_digits - 1);
+        let msd = n / pow; // most significant digit
+        let lsd = n % 10; // least significant digit
+        if msd != lsd {
+            return false;
+        }
+        n = (n % pow) / 10;
+        num_digits -= 2;
+    }
+    true
 }
 
 pub struct Primes {
@@ -152,6 +188,12 @@ fn test_lcm() {
 }
 
 #[test]
+fn test_pow() {
+    assert_eq!(2 * 2 * 2, pow(2, 3));
+    assert_eq!(3 * 3 * 3, pow(3, 3));
+}
+
+#[test]
 fn test_factorize() {
     fn compare(input: u64, factors: BTreeMap<u64, u64>) {
         let mut comp: u64 = 1;
@@ -167,6 +209,22 @@ fn test_factorize() {
         compare(i, factorize(i));
     }
 }
+
+#[test]
+fn test_is_palindrome() {
+    let palindromes = vec![
+        //1, 11, 121, 1221,
+        12321, 123321, 1234321, 12344321,
+    ];
+    for n in palindromes {
+        println!("{} -> {}", n, is_palindrome(n));
+        assert!(is_palindrome(n));
+    }
+
+    let non_palindromes = vec![10, 123, 1222, 12320, 123432, 123421, 1234322, 12344331];
+    for n in non_palindromes {
+        assert!(!is_palindrome(n));
+    }
 }
 
 #[test]
