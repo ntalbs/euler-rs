@@ -6,8 +6,8 @@ fn sol_1() -> u64 {
                 continue;
             }
             let c = 1000 - a - b;
-            if a*a + b*b == c*c {
-                return a*b*c;
+            if a * a + b * b == c * c {
+                return a * b * c;
             }
         }
     }
