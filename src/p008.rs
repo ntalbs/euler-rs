@@ -1,6 +1,7 @@
+#[rustfmt::skip]
 pub fn sol() -> u64 {
     let window_size = 13;
-    let source  =
+    let source = 
         "73167176531330624919225119674426574742355349194934\
         96983520312774506326239578318016984801869478851843\
         85861560789112949495459501737958331952853208805511\
@@ -27,7 +28,8 @@ pub fn sol() -> u64 {
         .map(|c| c.to_digit(10).unwrap() as u64)
         .collect();
 
-    numbers.as_slice()
+    numbers
+        .as_slice()
         .windows(window_size)
         .map(|w| w.iter().product())
         .max()
