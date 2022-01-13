@@ -34,6 +34,10 @@ pub fn factorize(mut n: u64) -> BTreeMap<u64, u64> {
         if n == 1 {
             break;
         }
+        if p > (n as f64).sqrt() as u64 {
+            ret.insert(n, 1);
+            break;
+        }
         while n % p == 0 {
             let e = ret.entry(p).or_insert(0);
             *e += 1;
@@ -207,7 +211,11 @@ fn test_factorize() {
         assert_eq!(input, comp);
     }
 
-    let data = vec![2 * 3 * 5, 12 * 24 * 48];
+    let data = vec![
+        2 * 3 * 5, 
+        12 * 24 * 48,
+        2 * 2 * 101 * 1299721,
+    ];
 
     for i in data {
         compare(i, factorize(i));
