@@ -78,3 +78,8 @@ pub fn sol() -> u64 {
     let products = vec![horizontal(), vertical(), diagonal(), anti_diagonal()];
     products.into_iter().max().unwrap()
 }
+
+#[test]
+fn test() {
+    assert_eq!(70600674, sol());
+}

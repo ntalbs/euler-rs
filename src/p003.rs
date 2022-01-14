@@ -5,3 +5,8 @@ pub fn sol() -> u64 {
     println!("{:?}", factorize(input));
     *factorize(input).keys().max().unwrap()
 }
+
+#[test]
+fn test() {
+    assert_eq!(6857, sol());
+}

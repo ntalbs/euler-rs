@@ -21,3 +21,9 @@ fn sol_2() -> u64 {
 pub fn sol() -> u64 {
     sol_2()
 }
+
+#[test]
+fn test() {
+    assert_eq!(233168, sol_1());
+    assert_eq!(233168, sol_2());
+}

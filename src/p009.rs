@@ -17,3 +17,8 @@ fn sol_1() -> u64 {
 pub fn sol() -> u64 {
     sol_1()
 }
+
+#[test]
+fn test() {
+    assert_eq!(31875000, sol());
+}

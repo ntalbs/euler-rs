@@ -22,3 +22,8 @@ pub fn sol() -> u64 {
         .next()
         .unwrap()
 }
+
+#[test]
+fn test() {
+    assert_eq!(76576500, sol());
+}

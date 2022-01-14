@@ -11,3 +11,8 @@ pub fn sol() -> u64 {
     const LIMIT: u64 = 100;
     square_of_sum(LIMIT) - sum_of_square(LIMIT)
 }
+
+#[test]
+fn test() {
+    assert_eq!(25164150, sol());
+}

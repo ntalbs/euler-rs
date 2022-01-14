@@ -22,3 +22,8 @@ pub fn sol() -> u64 {
         .fold(0, |a, b| a + b);
     ret
 }
+
+#[test]
+fn test() {
+    assert_eq!(4613732, sol());
+}

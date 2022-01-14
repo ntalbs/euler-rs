@@ -35,3 +35,8 @@ pub fn sol() -> u64 {
         .max()
         .unwrap()
 }
+
+#[test]
+fn test() {
+    assert_eq!(23514624000, sol());
+}
