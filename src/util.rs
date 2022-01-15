@@ -211,8 +211,9 @@ fn test_factorize() {
         assert_eq!(input, comp);
     }
 
+    #[rustfmt::skip]
     let data = vec![
-        2 * 3 * 5, 
+        2 * 3 * 5,
         12 * 24 * 48,
         2 * 2 * 101 * 1299721,
     ];
