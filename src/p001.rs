@@ -1,3 +1,6 @@
+#![allow(dead_code)]
+#![allow(unused_variables)]
+
 const LIMIT: u64 = 1000;
 
 fn sol_1() -> u64 {

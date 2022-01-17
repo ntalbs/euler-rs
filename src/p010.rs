@@ -1,3 +1,6 @@
+#![allow(dead_code)]
+#![allow(unused_variables)]
+
 use crate::util::{Primes, Sieve};
 
 const LIMIT: u64 = 2_000_000;
