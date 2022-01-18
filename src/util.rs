@@ -1,5 +1,7 @@
 use std::collections::{BTreeMap, LinkedList};
 
+use num::{bigint::{ToBigUint}, BigUint, Zero, ToPrimitive};
+
 /// Returns the greatest common divisor of m and n.
 pub fn gcd(mut m: u64, mut n: u64) -> u64 {
     assert!(m != 0 && n != 0);
@@ -166,6 +168,10 @@ impl Sieve {
     }
 }
 
+pub fn factorial(n: u64) -> BigUint {
+    (1..=n).map(|n| n.to_biguint().unwrap()).product()
+}
+
 #[test]
 #[should_panic]
 fn test_gcd_0_x() {
@@ -264,4 +270,14 @@ fn test_prime_iter_with_sieve() {
     for p in primes_iter {
         assert!(sieve.is_prime(p as usize));
     }
+}
+
+#[test]
+fn test_factorial() {
+    assert_eq!(factorial(0), 1.to_biguint().unwrap());
+    assert_eq!(factorial(1), 1.to_biguint().unwrap());
+    assert_eq!(factorial(2), 2.to_biguint().unwrap());
+    assert_eq!(factorial(3), (1 * 2 * 3).to_biguint().unwrap());
+    assert_eq!(factorial(4), (1 * 2 * 3 * 4).to_biguint().unwrap());
+    assert_eq!(factorial(5), (1 * 2 * 3 * 4 * 5).to_biguint().unwrap());
 }
