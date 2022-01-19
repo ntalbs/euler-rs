@@ -172,6 +172,18 @@ pub fn factorial(n: u64) -> BigUint {
     (1..=n).map(|n| n.to_biguint().unwrap()).product()
 }
 
+pub fn digits(mut n: BigUint) -> Vec<u64> {
+    let ten = 10.to_biguint().unwrap();
+    let mut acc: Vec<u64> = Vec::new();
+
+    while n != BigUint::zero() {
+        acc.push((&n % &ten).to_u64().unwrap());
+        n /= &ten;
+    }
+    acc.reverse();
+    acc
+}
+
 #[test]
 #[should_panic]
 fn test_gcd_0_x() {
@@ -280,4 +292,10 @@ fn test_factorial() {
     assert_eq!(factorial(3), (1 * 2 * 3).to_biguint().unwrap());
     assert_eq!(factorial(4), (1 * 2 * 3 * 4).to_biguint().unwrap());
     assert_eq!(factorial(5), (1 * 2 * 3 * 4 * 5).to_biguint().unwrap());
+}
+
+#[test]
+fn test_digits() {
+    assert_eq!(digits(12345.to_biguint().unwrap()), vec![1, 2, 3, 4, 5]);
+    assert_eq!(digits(54321.to_biguint().unwrap()), vec![5, 4, 3, 2, 1]);
 }
