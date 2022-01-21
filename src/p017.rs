@@ -1,3 +1,4 @@
+#[rustfmt::skip]
 fn num2str(n: u64) -> String {
     let one_nineteen = [
         "",
