@@ -1,6 +1,6 @@
 use std::collections::{BTreeMap, LinkedList};
 
-use num::{bigint::{ToBigUint}, BigUint, Zero, ToPrimitive};
+use num::{bigint::ToBigUint, BigUint, ToPrimitive, Zero};
 
 /// Returns the greatest common divisor of m and n.
 pub fn gcd(mut m: u64, mut n: u64) -> u64 {

@@ -1,5 +1,5 @@
-use num::{bigint::ToBigUint, BigUint};
 use crate::util::digits;
+use num::{bigint::ToBigUint, BigUint};
 
 pub fn sol() -> u64 {
     let two = 2.to_biguint().unwrap();
