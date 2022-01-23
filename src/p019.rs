@@ -1,9 +1,9 @@
 fn is_leap_year(year: u16) -> bool {
     if year % 100 == 0 {
-        if year % 400 == 0 {
-            return true
+        return if year % 400 == 0 {
+            true
         } else {
-            return year % 4 == 0
+            year % 4 == 0
         }
     }
     false
@@ -24,7 +24,7 @@ fn days_in_month(year: u16, month: u8) -> u8 {
     }
 }
 
-#[derive(Debug, PartialEq, Eq, Clone, Copy)]
+#[derive(Debug)]
 struct Date {
     year: u16,
     month: u8,
@@ -41,44 +41,40 @@ impl Date {
             day_of_week,
         }
     }
-}
 
-struct DateIter {
-    current: Date,
-}
+    fn next(&mut self) {
+        let next_dw = (self.day_of_week + 1) % 7;
 
-impl DateIter {
-    fn new(start: Date) -> DateIter {
-        DateIter {
-            current: start,
-        }
-    }
-}
-
-impl Iterator for DateIter {
-    type Item = Date;
-    fn next(&mut self) -> Option<Date> {
-        let current = &self.current;
-        let next_dw = (current.day_of_week + 1) % 7;
-        
-        let next_date = if current.day_of_month < days_in_month(current.year, current.month) {
-            Date::new(current.year, current.month, current.day_of_month + 1, next_dw)
-        } else if current.month < 12 {
-            Date::new(current.year, current.month + 1, 1, next_dw)
+        if self.day_of_month < days_in_month(self.year, self.month) {
+            self.day_of_month += 1;
+        } else if self.month < 12 {
+            self.month += 1;
+            self.day_of_month = 1;
         } else {
-            Date::new(current.year + 1, 1, 1, next_dw)
-        };
-        self.current = next_date;
-        Some(next_date)
+            self.year += 1;
+            self.month = 1;
+            self.day_of_month = 1;
+        }
+        self.day_of_week = next_dw;
     }
 }
 
 pub fn sol() -> u64 {
-    DateIter::new(Date::new(1900, 1, 1, 1))
-        .skip_while(|d| d.year <= 1900)
-        .take_while(|d| d.year <= 2000)
-        .filter(|d| d.day_of_month == 1 && d.day_of_week == 0)
-        .count() as u64
+    let mut count: u64 = 0;
+    let mut d = Date::new(1900, 1, 1, 1);
+    loop {
+        d.next();
+        if d.year <= 1900 {
+            continue;
+        }
+        if d.year > 2000 {
+            break;
+        }
+        if d.day_of_month == 1 && d.day_of_week == 0 {
+            count += 1;
+        }
+    }
+    count
 }
 
 #[test]
