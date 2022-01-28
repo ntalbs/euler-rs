@@ -1,10 +1,6 @@
 fn is_leap_year(year: u16) -> bool {
     if year % 100 == 0 {
-        return if year % 400 == 0 {
-            true
-        } else {
-            year % 4 == 0
-        }
+        return if year % 400 == 0 { true } else { year % 4 == 0 };
     }
     false
 }

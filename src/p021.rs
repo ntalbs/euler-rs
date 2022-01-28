@@ -4,9 +4,11 @@ fn aliquot_sum(n: u64) -> u64 {
     if n <= 1 {
         return 0;
     }
-    factorize(n).iter()
+    factorize(n)
+        .iter()
         .map(|(p, e)| (pow(*p, *e + 1) - 1) / (p - 1))
-        .product::<u64>() - n
+        .product::<u64>()
+        - n
 }
 
 fn is_amicable(a: u64) -> bool {

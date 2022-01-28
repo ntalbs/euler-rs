@@ -17,7 +17,9 @@ pub fn sol() -> u64 {
 
     names.sort();
 
-    names.iter().enumerate()
+    names
+        .iter()
+        .enumerate()
         .map(|(i, name)| (i as u64 + 1) * score(name))
         .sum()
 }
