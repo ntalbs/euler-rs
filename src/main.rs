@@ -23,6 +23,7 @@ mod p018;
 mod p019;
 mod p020;
 mod p021;
+mod p022;
 mod util;
 
 fn time(f: fn() -> u64) {
@@ -75,6 +76,7 @@ fn main() {
         19 => p019::sol,
         20 => p020::sol,
         21 => p021::sol,
+        22 => p022::sol,
         _ => {
             eprintln!("Solution #{} not implemented yet", prob_no);
             process::exit(1);
