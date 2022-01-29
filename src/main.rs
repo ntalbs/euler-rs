@@ -2,28 +2,7 @@ use std::env;
 use std::process;
 use std::time::Instant;
 
-mod p001;
-mod p002;
-mod p003;
-mod p004;
-mod p005;
-mod p006;
-mod p007;
-mod p008;
-mod p009;
-mod p010;
-mod p011;
-mod p012;
-mod p013;
-mod p014;
-mod p015;
-mod p016;
-mod p017;
-mod p018;
-mod p019;
-mod p020;
-mod p021;
-mod p022;
+mod ps;
 mod util;
 
 fn time(f: fn() -> u64) {
@@ -55,28 +34,28 @@ fn main() {
     };
 
     let sol = match prob_no {
-        1 => p001::sol,
-        2 => p002::sol,
-        3 => p003::sol,
-        4 => p004::sol,
-        5 => p005::sol,
-        6 => p006::sol,
-        7 => p007::sol,
-        8 => p008::sol,
-        9 => p009::sol,
-        10 => p010::sol,
-        11 => p011::sol,
-        12 => p012::sol,
-        13 => p013::sol,
-        14 => p014::sol,
-        15 => p015::sol,
-        16 => p016::sol,
-        17 => p017::sol,
-        18 => p018::sol,
-        19 => p019::sol,
-        20 => p020::sol,
-        21 => p021::sol,
-        22 => p022::sol,
+        1 => ps::p001::sol,
+        2 => ps::p002::sol,
+        3 => ps::p003::sol,
+        4 => ps::p004::sol,
+        5 => ps::p005::sol,
+        6 => ps::p006::sol,
+        7 => ps::p007::sol,
+        8 => ps::p008::sol,
+        9 => ps::p009::sol,
+        10 => ps::p010::sol,
+        11 => ps::p011::sol,
+        12 => ps::p012::sol,
+        13 => ps::p013::sol,
+        14 => ps::p014::sol,
+        15 => ps::p015::sol,
+        16 => ps::p016::sol,
+        17 => ps::p017::sol,
+        18 => ps::p018::sol,
+        19 => ps::p019::sol,
+        20 => ps::p020::sol,
+        21 => ps::p021::sol,
+        22 => ps::p022::sol,
         _ => {
             eprintln!("Solution #{} not implemented yet", prob_no);
             process::exit(1);
