@@ -184,6 +184,17 @@ pub fn digits(mut n: BigUint) -> Vec<u64> {
     acc
 }
 
+pub fn aliquot_sum(n: u64) -> u64 {
+    if n <= 1 {
+        return 0;
+    }
+    factorize(n)
+        .iter()
+        .map(|(p, e)| (pow(*p, *e + 1) - 1) / (p - 1))
+        .product::<u64>()
+        - n
+}
+
 #[test]
 #[should_panic]
 fn test_gcd_0_x() {

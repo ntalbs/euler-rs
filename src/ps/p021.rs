@@ -1,15 +1,4 @@
-use crate::util::{factorize, pow};
-
-fn aliquot_sum(n: u64) -> u64 {
-    if n <= 1 {
-        return 0;
-    }
-    factorize(n)
-        .iter()
-        .map(|(p, e)| (pow(*p, *e + 1) - 1) / (p - 1))
-        .product::<u64>()
-        - n
-}
+use crate::util::aliquot_sum;
 
 fn is_amicable(a: u64) -> bool {
     let b = aliquot_sum(a);
