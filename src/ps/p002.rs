@@ -3,6 +3,12 @@ struct Fibonacci {
     b: u64,
 }
 
+impl Fibonacci {
+    fn new() -> Self {
+        Self { a: 0, b: 1 }
+    }
+}
+
 impl Iterator for Fibonacci {
     type Item = u64;
     fn next(&mut self) -> Option<u64> {
@@ -15,8 +21,7 @@ impl Iterator for Fibonacci {
 }
 
 pub fn sol() -> u64 {
-    let fibo = Fibonacci { a: 0, b: 1 };
-    let ret = fibo
+    let ret = Fibonacci::new()
         .take_while(|x| x < &4_000_000)
         .filter(|x| x % 2 == 0)
         .fold(0, |a, b| a + b);
