@@ -1,6 +1,6 @@
-use std::collections::{BTreeMap, LinkedList};
+use std::{collections::{BTreeMap, LinkedList}, ops::Add};
 
-use num::{bigint::ToBigUint, BigUint, ToPrimitive, Zero};
+use num::{bigint::ToBigUint, BigUint, ToPrimitive, Zero, Num};
 
 /// Returns the greatest common divisor of m and n.
 pub fn gcd(mut m: u64, mut n: u64) -> u64 {
@@ -168,6 +168,28 @@ impl Sieve {
     }
 }
 
+pub struct Fibonacci<T> {
+    a: T,
+    b: T,
+}
+
+impl<T: Num> Fibonacci<T> {
+    pub fn new() -> Self {
+        Self { a: T::one(), b: T::one() }
+    }
+}
+
+impl<T> Iterator for Fibonacci<T> where for<'a> &'a T: Add<&'a T, Output=T> {
+    type Item = T;
+    fn next(&mut self) -> Option<T> {
+        use std::mem::swap;
+        let mut next = &self.a + &self.b;
+        swap(&mut self.a, &mut next);
+        swap(&mut self.a, &mut self.b);
+        Some(next)
+    }
+}
+
 pub fn factorial(n: u64) -> BigUint {
     (1..=n).map(|n| n.to_biguint().unwrap()).product()
 }
@@ -293,6 +315,34 @@ fn test_prime_iter_with_sieve() {
     for p in primes_iter {
         assert!(sieve.is_prime(p as usize));
     }
+}
+
+#[test]
+fn test_fibonacci_u64() {
+    let mut fibo = Fibonacci::<u64>::new();
+    assert_eq!(fibo.next().unwrap(), 1);
+    assert_eq!(fibo.next().unwrap(), 1);
+    assert_eq!(fibo.next().unwrap(), 2);
+    assert_eq!(fibo.next().unwrap(), 3);
+    assert_eq!(fibo.next().unwrap(), 5);
+    assert_eq!(fibo.next().unwrap(), 8);
+    assert_eq!(fibo.next().unwrap(), 13);
+    assert_eq!(fibo.next().unwrap(), 21);
+    assert_eq!(fibo.next().unwrap(), 34);
+}
+
+#[test]
+fn test_fibonacci_biguint() {
+    let mut fibo = Fibonacci::<BigUint>::new();
+    assert_eq!(fibo.next().unwrap(), 1_i32.to_biguint().unwrap());
+    assert_eq!(fibo.next().unwrap(), 1_i32.to_biguint().unwrap());
+    assert_eq!(fibo.next().unwrap(), 2_i32.to_biguint().unwrap());
+    assert_eq!(fibo.next().unwrap(), 3_i32.to_biguint().unwrap());
+    assert_eq!(fibo.next().unwrap(), 5_i32.to_biguint().unwrap());
+    assert_eq!(fibo.next().unwrap(), 8_i32.to_biguint().unwrap());
+    assert_eq!(fibo.next().unwrap(), 13_i32.to_biguint().unwrap());
+    assert_eq!(fibo.next().unwrap(), 21_i32.to_biguint().unwrap());
+    assert_eq!(fibo.next().unwrap(), 34_i32.to_biguint().unwrap());
 }
 
 #[test]
