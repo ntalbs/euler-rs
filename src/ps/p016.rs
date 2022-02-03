@@ -1,7 +1,7 @@
 use crate::util::digits;
 use num::{bigint::ToBigUint, BigUint};
 
-pub fn sol() -> u64 {
+pub fn sol() -> i64 {
     let two = 2.to_biguint().unwrap();
     let mut x: BigUint = 1.to_biguint().unwrap();
 

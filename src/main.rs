@@ -5,7 +5,7 @@ use std::time::Instant;
 mod ps;
 mod util;
 
-fn time(f: fn() -> u64) {
+fn time(f: fn() -> i64) {
     let start = Instant::now();
     let ret = f();
     println!("Elapsed time: {} ms", start.elapsed().as_millis());

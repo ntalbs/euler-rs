@@ -1,5 +1,5 @@
 /// brute-force approach
-fn sol_1() -> u64 {
+fn sol_1() -> i64 {
     for a in 1..1000 {
         for b in a..1000 {
             if a + b > 1000 {
@@ -14,7 +14,7 @@ fn sol_1() -> u64 {
     0
 }
 
-pub fn sol() -> u64 {
+pub fn sol() -> i64 {
     sol_1()
 }
 

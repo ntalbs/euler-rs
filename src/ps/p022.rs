@@ -8,11 +8,11 @@ fn read_names() -> Vec<String> {
         .collect::<Vec<String>>()
 }
 
-fn score(name: &String) -> u64 {
-    name.chars().map(|c| c as u64 - 64).sum()
+fn score(name: &String) -> i64 {
+    name.chars().map(|c| c as i64 - 64).sum()
 }
 
-pub fn sol() -> u64 {
+pub fn sol() -> i64 {
     let mut names = read_names();
 
     names.sort();
@@ -20,7 +20,7 @@ pub fn sol() -> u64 {
     names
         .iter()
         .enumerate()
-        .map(|(i, name)| (i as u64 + 1) * score(name))
+        .map(|(i, name)| (i as i64 + 1) * score(name))
         .sum()
 }
 

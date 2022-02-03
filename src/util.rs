@@ -3,7 +3,7 @@ use std::{collections::{BTreeMap, LinkedList}, ops::Add};
 use num::{bigint::ToBigUint, BigUint, ToPrimitive, Zero, Num};
 
 /// Returns the greatest common divisor of m and n.
-pub fn gcd(mut m: u64, mut n: u64) -> u64 {
+pub fn gcd(mut m: i64, mut n: i64) -> i64 {
     assert!(m != 0 && n != 0);
     while m != 0 {
         if m < n {
@@ -17,11 +17,11 @@ pub fn gcd(mut m: u64, mut n: u64) -> u64 {
 }
 
 /// Returns the least common multiplier of m and n.
-pub fn lcm(m: u64, n: u64) -> u64 {
+pub fn lcm(m: i64, n: i64) -> i64 {
     (m * n) / gcd(m, n)
 }
 
-pub fn pow(x: u64, e: u64) -> u64 {
+pub fn pow(x: i64, e: i64) -> i64 {
     let mut ret = 1;
     for _ in 0..e {
         ret *= x;
@@ -30,13 +30,13 @@ pub fn pow(x: u64, e: u64) -> u64 {
 }
 
 /// Returns prime factorized result of a specified number as a map of prime factor to exponent
-pub fn factorize(mut n: u64) -> BTreeMap<u64, u64> {
+pub fn factorize(mut n: i64) -> BTreeMap<i64, i64> {
     let mut ret = BTreeMap::new();
     for p in Primes::new() {
         if n == 1 {
             break;
         }
-        if p > (n as f64).sqrt() as u64 {
+        if p > (n as f64).sqrt() as i64 {
             ret.insert(n, 1);
             break;
         }
@@ -49,8 +49,8 @@ pub fn factorize(mut n: u64) -> BTreeMap<u64, u64> {
     ret
 }
 
-pub fn is_palindrome(mut n: u64) -> bool {
-    fn count_digits(mut n: u64) -> u64 {
+pub fn is_palindrome(mut n: i64) -> bool {
+    fn count_digits(mut n: i64) -> i64 {
         let mut cnt = 1;
         loop {
             n /= 10;
@@ -78,8 +78,8 @@ pub fn is_palindrome(mut n: u64) -> bool {
 }
 
 pub struct Primes {
-    primes: LinkedList<u64>,
-    next: u64,
+    primes: LinkedList<i64>,
+    next: i64,
 }
 
 impl Primes {
@@ -89,8 +89,8 @@ impl Primes {
             next: 2,
         }
     }
-    fn is_prime(&self, n: u64) -> bool {
-        let limit = (n as f64).sqrt() as u64 + 1;
+    fn is_prime(&self, n: i64) -> bool {
+        let limit = (n as f64).sqrt() as i64 + 1;
         for p in &self.primes {
             if n % p == 0 {
                 return false;
@@ -104,8 +104,8 @@ impl Primes {
 }
 
 impl Iterator for Primes {
-    type Item = u64;
-    fn next(&mut self) -> Option<u64> {
+    type Item = i64;
+    fn next(&mut self) -> Option<i64> {
         loop {
             if self.is_prime(self.next) {
                 let current = self.next;
@@ -190,30 +190,30 @@ impl<T> Iterator for Fibonacci<T> where for<'a> &'a T: Add<&'a T, Output=T> {
     }
 }
 
-pub fn factorial(n: u64) -> BigUint {
+pub fn factorial(n: i64) -> BigUint {
     (1..=n).map(|n| n.to_biguint().unwrap()).product()
 }
 
-pub fn digits(mut n: BigUint) -> Vec<u64> {
+pub fn digits(mut n: BigUint) -> Vec<i64> {
     let ten = 10.to_biguint().unwrap();
-    let mut acc: Vec<u64> = Vec::new();
+    let mut acc: Vec<i64> = Vec::new();
 
     while n != BigUint::zero() {
-        acc.push((&n % &ten).to_u64().unwrap());
+        acc.push((&n % &ten).to_i64().unwrap());
         n /= &ten;
     }
     acc.reverse();
     acc
 }
 
-pub fn aliquot_sum(n: u64) -> u64 {
+pub fn aliquot_sum(n: i64) -> i64 {
     if n <= 1 {
         return 0;
     }
     factorize(n)
         .iter()
         .map(|(p, e)| (pow(*p, *e + 1) - 1) / (p - 1))
-        .product::<u64>()
+        .product::<i64>()
         - n
 }
 
@@ -254,8 +254,8 @@ fn test_pow() {
 
 #[test]
 fn test_factorize() {
-    fn compare(input: u64, factors: BTreeMap<u64, u64>) {
-        let mut comp: u64 = 1;
+    fn compare(input: i64, factors: BTreeMap<i64, i64>) {
+        let mut comp: i64 = 1;
         for (p, e) in factors {
             comp *= pow(p, e);
         }
@@ -293,8 +293,8 @@ fn test_is_palindrome() {
 
 #[test]
 fn test_prime_iter() {
-    let primes_under_20_ref: Vec<u64> = vec![2, 3, 5, 7, 11, 13, 17, 19];
-    let primes_under_20_gen: Vec<u64> = Primes::new().take_while(|x| x < &20_u64).collect();
+    let primes_under_20_ref: Vec<i64> = vec![2, 3, 5, 7, 11, 13, 17, 19];
+    let primes_under_20_gen: Vec<i64> = Primes::new().take_while(|x| x < &20_i64).collect();
     assert_eq!(primes_under_20_ref, primes_under_20_gen);
 }
 
@@ -318,8 +318,8 @@ fn test_prime_iter_with_sieve() {
 }
 
 #[test]
-fn test_fibonacci_u64() {
-    let mut fibo = Fibonacci::<u64>::new();
+fn test_fibonacci_i64() {
+    let mut fibo = Fibonacci::<i64>::new();
     assert_eq!(fibo.next().unwrap(), 1);
     assert_eq!(fibo.next().unwrap(), 1);
     assert_eq!(fibo.next().unwrap(), 2);

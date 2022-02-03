@@ -1,6 +1,6 @@
 use num::bigint::{BigUint, ToBigUint};
 
-pub fn sol() -> u64 {
+pub fn sol() -> i64 {
     let numbers = vec![
         "37107287533902102798797998220837590246510135740250",
         "46376937677490009712648124896970078050417018260538",
@@ -109,7 +109,7 @@ pub fn sol() -> u64 {
         .map(|x| BigUint::parse_bytes(x.as_bytes(), 10).unwrap())
         .fold(0_i32.to_biguint().unwrap(), |sum, x| sum + x)
         .to_string()[..10]
-        .parse::<u64>()
+        .parse::<i64>()
         .unwrap()
 }
 

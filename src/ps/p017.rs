@@ -1,5 +1,5 @@
 #[rustfmt::skip]
-fn num2str(n: u64) -> String {
+fn num2str(n: i64) -> String {
     let one_nineteen = [
         "",
         "one",
@@ -72,11 +72,11 @@ fn num2str(n: u64) -> String {
     }
 }
 
-pub fn sol() -> u64 {
+pub fn sol() -> i64 {
     (1..=1000)
         .map(num2str)
         .map(|s| s.chars().count())
-        .sum::<usize>() as u64
+        .sum::<usize>() as i64
 }
 
 #[test]

@@ -55,8 +55,8 @@ impl Date {
     }
 }
 
-pub fn sol() -> u64 {
-    let mut count: u64 = 0;
+pub fn sol() -> i64 {
+    let mut count: i64 = 0;
     let mut d = Date::new(1900, 1, 1, 1);
     loop {
         d.next();

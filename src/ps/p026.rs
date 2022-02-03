@@ -1,9 +1,9 @@
 use std::collections::HashSet;
 
-fn qs(n: u64) -> (u64, Vec<u64>, usize) {
-    let mut r: u64 = 1;
-    let mut r_acc: HashSet<u64> = HashSet::new();
-    let mut q_acc: Vec<u64> = Vec::new();
+fn qs(n: i64) -> (i64, Vec<i64>, usize) {
+    let mut r: i64 = 1;
+    let mut r_acc: HashSet<i64> = HashSet::new();
+    let mut q_acc: Vec<i64> = Vec::new();
 
     loop {
         if r == 0 {
@@ -19,7 +19,7 @@ fn qs(n: u64) -> (u64, Vec<u64>, usize) {
     }
 }
 
-pub fn sol() -> u64 {
+pub fn sol() -> i64 {
     (1..=1000)
         .map(|n| qs(n))
         .max_by_key(|&(_, _, cnt)| cnt)

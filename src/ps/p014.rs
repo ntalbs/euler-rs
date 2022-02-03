@@ -1,5 +1,5 @@
-fn collatz(mut n: u64) -> u64 {
-    let mut cnt: u64 = 1;
+fn collatz(mut n: i64) -> i64 {
+    let mut cnt: i64 = 1;
     loop {
         n = match n % 2 {
             0 => n / 2,
@@ -14,7 +14,7 @@ fn collatz(mut n: u64) -> u64 {
     cnt
 }
 
-pub fn sol() -> u64 {
+pub fn sol() -> i64 {
     (1..1_000_000)
         .map(|n| (n, collatz(n)))
         // .inspect(|&(n, c)| println!("n={}, c={}", n, c))

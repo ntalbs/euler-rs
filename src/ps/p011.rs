@@ -1,5 +1,5 @@
 #[rustfmt::skip]
-const INPUT:[[u64;20];20] = [
+const INPUT:[[i64;20];20] = [
     [08, 02, 22, 97, 38, 15, 00, 40, 00, 75, 04, 05, 07, 78, 52, 12, 50, 77, 91, 08],
     [49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 04, 56, 62, 00],
     [81, 49, 31, 73, 55, 79, 14, 29, 93, 71, 40, 67, 53, 88, 30, 03, 49, 13, 36, 65],
@@ -22,7 +22,7 @@ const INPUT:[[u64;20];20] = [
     [01, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 01, 89, 19, 67, 48]
 ];
 
-fn horizontal() -> u64 {
+fn horizontal() -> i64 {
     let mut max = 0;
     for r in 0..20 {
         for c in 0..17 {
@@ -35,7 +35,7 @@ fn horizontal() -> u64 {
     max
 }
 
-fn vertical() -> u64 {
+fn vertical() -> i64 {
     let mut max = 0;
     for r in 0..17 {
         for c in 0..20 {
@@ -48,7 +48,7 @@ fn vertical() -> u64 {
     max
 }
 
-fn diagonal() -> u64 {
+fn diagonal() -> i64 {
     let mut max = 0;
     for r in 0..17 {
         for c in 0..17 {
@@ -61,7 +61,7 @@ fn diagonal() -> u64 {
     max
 }
 
-fn anti_diagonal() -> u64 {
+fn anti_diagonal() -> i64 {
     let mut max = 0;
     for r in 0..17 {
         for c in 3..20 {
@@ -74,7 +74,7 @@ fn anti_diagonal() -> u64 {
     max
 }
 
-pub fn sol() -> u64 {
+pub fn sol() -> i64 {
     let products = vec![horizontal(), vertical(), diagonal(), anti_diagonal()];
     products.into_iter().max().unwrap()
 }

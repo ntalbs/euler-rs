@@ -1,5 +1,5 @@
 #[rustfmt::skip]
-pub fn sol() -> u64 {
+pub fn sol() -> i64 {
     let window_size = 13;
     let source =
         "73167176531330624919225119674426574742355349194934\
@@ -23,9 +23,9 @@ pub fn sol() -> u64 {
         05886116467109405077541002256983155200055935729725\
         71636269561882670428252483600823257530420752963450";
 
-    let numbers: Vec<u64> = source
+    let numbers: Vec<i64> = source
         .chars()
-        .map(|c| c.to_digit(10).unwrap() as u64)
+        .map(|c| c.to_digit(10).unwrap() as i64)
         .collect();
 
     numbers

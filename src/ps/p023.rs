@@ -2,18 +2,18 @@ use std::collections::HashSet;
 
 use crate::util::aliquot_sum;
 
-const LIMIT: u64 = 28123;
+const LIMIT: i64 = 28123;
 
-fn is_abundant(n: u64) -> bool {
+fn is_abundant(n: i64) -> bool {
     aliquot_sum(n) > n
 }
 
-pub fn sol() -> u64 {
+pub fn sol() -> i64 {
     let abundants = (1..=LIMIT)
         .filter(|n| is_abundant(*n))
-        .collect::<Vec<u64>>();
+        .collect::<Vec<i64>>();
 
-    let mut sum_of_two_abundants: HashSet<u64> = HashSet::new();
+    let mut sum_of_two_abundants: HashSet<i64> = HashSet::new();
 
     for a in &abundants {
         for b in &abundants {

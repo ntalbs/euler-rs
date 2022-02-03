@@ -1,13 +1,13 @@
 use std::cmp::max;
 
-fn find_maxs(ls: &[u64], us: &[u64]) -> Vec<u64> {
+fn find_maxs(ls: &[i64], us: &[i64]) -> Vec<i64> {
     let sum1 = ls.iter().zip(us.iter()).map(|(a, b)| a + b);
     let sum2 = ls.iter().skip(1).zip(us.iter()).map(|(a, b)| a + b);
     sum1.zip(sum2).map(|(a, b)| max(a, b)).collect()
 }
 
-pub fn sol() -> u64 {
-    let mut triangle: Vec<Vec<u64>> = vec![
+pub fn sol() -> i64 {
+    let mut triangle: Vec<Vec<i64>> = vec![
         vec![75],
         vec![95, 64],
         vec![17, 47, 82],

@@ -1,11 +1,11 @@
 use crate::util::factorize;
 
-fn triangular_number(n: u64) -> u64 {
+fn triangular_number(n: i64) -> i64 {
     n * (n + 1) / 2
 }
 
 #[rustfmt::skip]
-fn count_divisors(n: u64) -> u64 {
+fn count_divisors(n: i64) -> i64 {
     factorize(n)
         .values()
         .map(|x| x + 1)
@@ -15,7 +15,7 @@ fn count_divisors(n: u64) -> u64 {
 /// SLOW!!!
 /// Probably Primes iterator needs to be cached
 /// Reduce loop in factorize 2 .. sqrt(n)
-pub fn sol() -> u64 {
+pub fn sol() -> i64 {
     (1..)
         .map(triangular_number)
         .skip_while(|n| count_divisors(*n) < 500)
