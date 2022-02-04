@@ -77,6 +77,20 @@ pub fn is_palindrome(mut n: i64) -> bool {
     true
 }
 
+pub fn is_prime(n: i64) -> bool {
+    if n < 2 { return false; }
+    if n < 4 { return true; }
+    if n % 2 == 0 { return false; }
+    if n < 9 { return true; }
+    if n % 3 == 0 { return false; }
+    for i in (11..((n as f64).sqrt() as i64)).step_by(2)  {
+        if n % i == 0 {
+            return false;
+        }
+    }
+    true
+}
+
 pub struct Primes {
     primes: LinkedList<i64>,
     next: i64,
