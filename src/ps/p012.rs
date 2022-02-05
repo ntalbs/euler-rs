@@ -12,9 +12,6 @@ fn count_divisors(n: i64) -> i64 {
         .product()
 }
 
-/// SLOW!!!
-/// Probably Primes iterator needs to be cached
-/// Reduce loop in factorize 2 .. sqrt(n)
 pub fn sol() -> i64 {
     (1..)
         .map(triangular_number)
