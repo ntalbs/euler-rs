@@ -1,6 +1,6 @@
 use std::{collections::{BTreeMap, LinkedList}, ops::Add};
 
-use num::{bigint::ToBigUint, BigUint, ToPrimitive, Zero, Num};
+use num::{bigint::ToBigUint, BigUint, ToPrimitive, Zero, Num, pow};
 
 /// Returns the greatest common divisor of m and n.
 pub fn gcd(mut m: i64, mut n: i64) -> i64 {
@@ -19,14 +19,6 @@ pub fn gcd(mut m: i64, mut n: i64) -> i64 {
 /// Returns the least common multiplier of m and n.
 pub fn lcm(m: i64, n: i64) -> i64 {
     (m * n) / gcd(m, n)
-}
-
-pub fn pow(x: i64, e: i64) -> i64 {
-    let mut ret = 1;
-    for _ in 0..e {
-        ret *= x;
-    }
-    ret
 }
 
 /// Returns prime factorized result of a specified number as a map of prime factor to exponent
@@ -65,7 +57,7 @@ pub fn is_palindrome(mut n: i64) -> bool {
     let mut num_digits = count_digits(n);
 
     while num_digits > 1 {
-        let pow = pow(10, num_digits - 1);
+        let pow = pow(10, num_digits as usize - 1);
         let msd = n / pow; // most significant digit
         let lsd = n % 10; // least significant digit
         if msd != lsd {
@@ -226,7 +218,7 @@ pub fn aliquot_sum(n: i64) -> i64 {
     }
     factorize(n)
         .iter()
-        .map(|(p, e)| (pow(*p, *e + 1) - 1) / (p - 1))
+        .map(|(p, e)| (pow(*p, *e as usize + 1) - 1) / (p - 1))
         .product::<i64>()
         - n
 }
@@ -261,17 +253,11 @@ fn test_lcm() {
 }
 
 #[test]
-fn test_pow() {
-    assert_eq!(2 * 2 * 2, pow(2, 3));
-    assert_eq!(3 * 3 * 3, pow(3, 3));
-}
-
-#[test]
 fn test_factorize() {
     fn compare(input: i64, factors: BTreeMap<i64, i64>) {
         let mut comp: i64 = 1;
         for (p, e) in factors {
-            comp *= pow(p, e);
+            comp *= pow(p, e as usize);
         }
         assert_eq!(input, comp);
     }
