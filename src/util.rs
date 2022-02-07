@@ -1,6 +1,5 @@
 use std::{collections::{BTreeMap, LinkedList}, ops::Add};
-
-use num::{bigint::ToBigUint, BigUint, ToPrimitive, Zero, Num, pow};
+use num::{bigint::ToBigUint, BigUint, Num, pow};
 
 /// Returns the greatest common divisor of m and n.
 pub fn gcd(mut m: i64, mut n: i64) -> i64 {
@@ -200,16 +199,15 @@ pub fn factorial(n: i64) -> BigUint {
     (1..=n).map(|n| n.to_biguint().unwrap()).product()
 }
 
-pub fn digits(mut n: BigUint) -> Vec<i64> {
-    let ten = 10.to_biguint().unwrap();
-    let mut acc: Vec<i64> = Vec::new();
-
-    while n != BigUint::zero() {
-        acc.push((&n % &ten).to_i64().unwrap());
-        n /= &ten;
-    }
-    acc.reverse();
-    acc
+pub fn digits<T, R>(n: T) -> Vec<R> where
+    T: Num + ToString,
+    R: Num + TryFrom<u32>
+{
+    n.to_string()
+        .chars()
+        .map(|c| c.to_digit(10).unwrap())
+        .map(|d| R::try_from(d).ok().unwrap())
+        .collect()
 }
 
 pub fn aliquot_sum(n: i64) -> i64 {
@@ -357,6 +355,6 @@ fn test_factorial() {
 
 #[test]
 fn test_digits() {
-    assert_eq!(digits(12345.to_biguint().unwrap()), vec![1, 2, 3, 4, 5]);
-    assert_eq!(digits(54321.to_biguint().unwrap()), vec![5, 4, 3, 2, 1]);
+    assert_eq!(digits::<u64, u8>(12345_u64), vec![1, 2, 3, 4, 5]);
+    assert_eq!(digits::<i32, i8>(54321_i32), vec![5, 4, 3, 2, 1]);
 }
