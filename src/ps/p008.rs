@@ -38,5 +38,5 @@ pub fn sol() -> i64 {
 
 #[test]
 fn test() {
-    assert_eq!(23514624000, sol());
+    assert_eq!(sol(), 23514624000);
 }

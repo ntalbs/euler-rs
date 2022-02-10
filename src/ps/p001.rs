@@ -27,6 +27,6 @@ pub fn sol() -> i64 {
 
 #[test]
 fn test() {
-    assert_eq!(233168, sol_1());
-    assert_eq!(233168, sol_2());
+    assert_eq!(sol_1(), 233168);
+    assert_eq!(sol_2(), 233168);
 }
