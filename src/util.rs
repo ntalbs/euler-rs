@@ -73,7 +73,7 @@ pub fn is_prime(n: i64) -> bool {
     if n < 4 { return true; }
     if n % 2 == 0 { return false; }
     if n < 9 { return true; }
-    if n % 3 == 0 { return false; }
+    if n % 3 == 0 || n % 5 == 0 || n % 7 == 0 { return false; }
     for i in (11..((n as f64).sqrt() as i64)).step_by(2)  {
         if n % i == 0 {
             return false;
