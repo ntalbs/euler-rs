@@ -67,6 +67,7 @@ fn main() {
         31 => ps::p031::sol,
         32 => ps::p032::sol,
         33 => ps::p033::sol,
+        34 => ps::p034::sol,
         _ => {
             eprintln!("Solution #{} not implemented yet", prob_no);
             process::exit(1);
