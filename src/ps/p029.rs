@@ -1,7 +1,7 @@
 use std::collections::HashSet;
 
 use itertools::iproduct;
-use num::{bigint::ToBigUint, BigUint, pow};
+use num::{bigint::ToBigUint, pow, BigUint};
 
 pub fn sol() -> i64 {
     let set: HashSet<BigUint> = iproduct!(2..=100, 2..=100)

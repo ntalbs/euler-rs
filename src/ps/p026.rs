@@ -12,7 +12,7 @@ fn qs(n: i64) -> (i64, Vec<i64>, usize) {
             return (n, q_acc, r_acc.len());
         } else {
             r_acc.insert(r);
-            q_acc.push(r/n);
+            q_acc.push(r / n);
             r = (r % n) * 10;
             continue;
         }

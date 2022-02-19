@@ -2,7 +2,7 @@ use crate::util::is_palindrome;
 
 fn is_binary_palindrome(n: i64) -> bool {
     let bin = format!("{:b}", n);
-    let rev = bin.chars().rev().collect::<String>(); 
+    let rev = bin.chars().rev().collect::<String>();
     bin.eq(&rev)
 }
 

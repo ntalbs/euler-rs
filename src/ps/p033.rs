@@ -35,8 +35,8 @@ pub fn sol() -> i64 {
                 } else {
                     None
                 }
-            },
-            None => None
+            }
+            None => None,
         })
         .inspect(|r| println!("{:?}", r))
         .product::<Rational64>()

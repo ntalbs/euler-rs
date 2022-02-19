@@ -20,7 +20,7 @@ fn cc(amt: i64, n: i64) -> i64 {
     } else if n == 0 {
         return 0;
     } else {
-        return cc(amt, n-1) + cc(amt - value(n), n);
+        return cc(amt, n - 1) + cc(amt - value(n), n);
     }
 }
 

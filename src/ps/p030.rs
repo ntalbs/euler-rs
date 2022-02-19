@@ -10,7 +10,7 @@ fn sum_of_5th_power_of_digits(n: i64) -> i64 {
 pub fn sol() -> i64 {
     (2..354294)
         .filter(|n| sum_of_5th_power_of_digits(*n) == *n)
-        .sum() 
+        .sum()
 }
 
 #[test]

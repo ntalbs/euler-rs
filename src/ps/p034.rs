@@ -10,11 +10,11 @@ fn factorial(n: i64) -> i64 {
         7 => 5040,
         8 => 40320,
         9 => 362880,
-        _ => panic!()
+        _ => panic!(),
     }
 }
 
-fn sum_of_fact(mut n: i64) -> i64{
+fn sum_of_fact(mut n: i64) -> i64 {
     let mut ret = 0;
     loop {
         if n == 0 {
@@ -31,9 +31,7 @@ fn check(n: i64) -> bool {
 }
 
 pub fn sol() -> i64 {
-    (11..=2_540_160)
-        .filter(|n| check(*n))
-        .sum()
+    (11..=2_540_160).filter(|n| check(*n)).sum()
 }
 
 #[test]

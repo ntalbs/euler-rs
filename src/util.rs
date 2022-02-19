@@ -1,5 +1,11 @@
-use std::{collections::{BTreeMap, LinkedList}, ops::{Add, DivAssign}};
-use num::{bigint::{ToBigUint, ToBigInt}, BigUint, Num, pow, FromPrimitive};
+use num::{
+    bigint::{ToBigInt, ToBigUint},
+    pow, BigUint, FromPrimitive, Num,
+};
+use std::{
+    collections::{BTreeMap, LinkedList},
+    ops::{Add, DivAssign},
+};
 
 /// Returns the greatest common divisor of m and n.
 pub fn gcd(mut m: i64, mut n: i64) -> i64 {
@@ -68,6 +74,7 @@ pub fn is_palindrome(mut n: i64) -> bool {
     true
 }
 
+#[rustfmt::skip]
 pub fn is_prime(n: i64) -> bool {
     if n < 2 { return false; }
     if n < 4 { return true; }
@@ -180,11 +187,17 @@ pub struct Fibonacci<T> {
 
 impl<T: Num> Fibonacci<T> {
     pub fn new() -> Self {
-        Self { a: T::one(), b: T::one() }
+        Self {
+            a: T::one(),
+            b: T::one(),
+        }
     }
 }
 
-impl<T> Iterator for Fibonacci<T> where for<'a> &'a T: Add<&'a T, Output=T> {
+impl<T> Iterator for Fibonacci<T>
+where
+    for<'a> &'a T: Add<&'a T, Output = T>,
+{
     type Item = T;
     fn next(&mut self) -> Option<T> {
         use std::mem::swap;
@@ -199,9 +212,10 @@ pub fn factorial(n: i64) -> BigUint {
     (1..=n).map(|n| n.to_biguint().unwrap()).product()
 }
 
-pub fn digits<T, R>(n: T) -> Vec<R> where
+pub fn digits<T, R>(n: T) -> Vec<R>
+where
     T: Num + ToString,
-    R: Num + TryFrom<u32>
+    R: Num + TryFrom<u32>,
 {
     n.to_string()
         .chars()
@@ -210,7 +224,10 @@ pub fn digits<T, R>(n: T) -> Vec<R> where
         .collect()
 }
 
-pub fn count_digits<T>(mut n: T) -> usize where T: Num + DivAssign + PartialOrd + FromPrimitive + Clone {
+pub fn count_digits<T>(mut n: T) -> usize
+where
+    T: Num + DivAssign + PartialOrd + FromPrimitive + Clone,
+{
     let ten = T::from_i8(10).unwrap();
     let mut count = 1;
     while n > ten.clone() {
