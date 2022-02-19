@@ -1,5 +1,5 @@
-use std::{collections::{BTreeMap, LinkedList}, ops::Add};
-use num::{bigint::ToBigUint, BigUint, Num, pow};
+use std::{collections::{BTreeMap, LinkedList}, ops::{Add, DivAssign}};
+use num::{bigint::{ToBigUint, ToBigInt}, BigUint, Num, pow, FromPrimitive};
 
 /// Returns the greatest common divisor of m and n.
 pub fn gcd(mut m: i64, mut n: i64) -> i64 {
@@ -210,6 +210,16 @@ pub fn digits<T, R>(n: T) -> Vec<R> where
         .collect()
 }
 
+pub fn count_digits<T>(mut n: T) -> usize where T: Num + DivAssign + PartialOrd + FromPrimitive + Clone {
+    let ten = T::from_i8(10).unwrap();
+    let mut count = 1;
+    while n > ten.clone() {
+        count += 1;
+        n /= ten.clone();
+    }
+    count
+}
+
 pub fn aliquot_sum(n: i64) -> i64 {
     if n <= 1 {
         return 0;
@@ -357,4 +367,18 @@ fn test_factorial() {
 fn test_digits() {
     assert_eq!(digits::<u64, u8>(12345_u64), vec![1, 2, 3, 4, 5]);
     assert_eq!(digits::<i32, i8>(54321_i32), vec![5, 4, 3, 2, 1]);
+}
+
+#[test]
+fn test_count_digits() {
+    assert_eq!(count_digits(0), 1);
+    assert_eq!(count_digits(1), 1);
+    assert_eq!(count_digits(12), 2);
+    assert_eq!(count_digits(123), 3);
+    assert_eq!(count_digits(1234), 4);
+    assert_eq!(count_digits(12345), 5);
+    assert_eq!(count_digits(123456), 6);
+    assert_eq!(count_digits(1234567), 7);
+
+    assert_eq!(count_digits(1234567.to_bigint().unwrap()), 7);
 }
