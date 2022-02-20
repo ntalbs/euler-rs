@@ -1,5 +1,5 @@
 use num::{
-    bigint::{ToBigInt, ToBigUint},
+    bigint::ToBigUint,
     pow, BigUint, FromPrimitive, Num,
 };
 use std::{
@@ -397,5 +397,5 @@ fn test_count_digits() {
     assert_eq!(count_digits(123456), 6);
     assert_eq!(count_digits(1234567), 7);
 
-    assert_eq!(count_digits(1234567.to_bigint().unwrap()), 7);
+    assert_eq!(count_digits(1234567.to_biguint().unwrap()), 7);
 }
