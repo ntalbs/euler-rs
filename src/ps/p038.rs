@@ -32,8 +32,3 @@ pub fn sol() -> i64 {
 fn test() {
     assert_eq!(sol(), 932718654);
 }
-
-#[test]
-fn test_is_pandigital() {
-    assert!(is_pandigital("567891234"));
-}
