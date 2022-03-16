@@ -4,7 +4,7 @@ use num::{
 };
 use std::{
     collections::{BTreeMap, LinkedList},
-    ops::{Add, DivAssign},
+    ops::{Add, DivAssign, Mul},
 };
 
 /// Returns the greatest common divisor of m and n.
@@ -224,6 +224,17 @@ where
         .collect()
 }
 
+pub fn from_digits<T>(digits: Vec<T>) -> T 
+where T: Num + FromPrimitive + Add + Mul + Copy
+{
+    let mut ret: T = T::zero();
+    let ten: T = T::from_i8(10).unwrap();
+    for d in digits {
+        ret = ret * ten + d;
+    }
+    ret
+}
+
 pub fn count_digits<T>(mut n: T) -> usize
 where
     T: Num + DivAssign + PartialOrd + FromPrimitive + Clone,
@@ -384,6 +395,12 @@ fn test_factorial() {
 fn test_digits() {
     assert_eq!(digits::<u64, u8>(12345_u64), vec![1, 2, 3, 4, 5]);
     assert_eq!(digits::<i32, i8>(54321_i32), vec![5, 4, 3, 2, 1]);
+}
+
+#[test]
+fn test_from_digits() {
+    assert_eq!(from_digits(vec![1,2,3,4,5]), 12345);
+    assert_eq!(from_digits(vec![5,4,3,2,1]), 54321);
 }
 
 #[test]
