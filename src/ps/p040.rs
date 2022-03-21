@@ -1,5 +1,5 @@
-use std::collections::HashSet;
 use crate::util::digits;
+use std::collections::HashSet;
 
 pub fn sol() -> i64 {
     let indexes: HashSet<usize> = HashSet::from([1, 10, 100, 1000, 10000, 100000, 1000000]);

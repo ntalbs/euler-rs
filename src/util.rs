@@ -1,7 +1,4 @@
-use num::{
-    bigint::ToBigUint,
-    pow, BigUint, FromPrimitive, Num,
-};
+use num::{bigint::ToBigUint, pow, BigUint, FromPrimitive, Num};
 use std::{
     collections::{BTreeMap, LinkedList},
     ops::{Add, DivAssign, Mul},
@@ -224,8 +221,9 @@ where
         .collect()
 }
 
-pub fn from_digits<T>(digits: Vec<T>) -> T 
-where T: Num + FromPrimitive + Add + Mul + Copy
+pub fn from_digits<T>(digits: Vec<T>) -> T
+where
+    T: Num + FromPrimitive + Add + Mul + Copy,
 {
     let mut ret: T = T::zero();
     let ten: T = T::from_i8(10).unwrap();
@@ -399,8 +397,8 @@ fn test_digits() {
 
 #[test]
 fn test_from_digits() {
-    assert_eq!(from_digits(vec![1,2,3,4,5]), 12345);
-    assert_eq!(from_digits(vec![5,4,3,2,1]), 54321);
+    assert_eq!(from_digits(vec![1, 2, 3, 4, 5]), 12345);
+    assert_eq!(from_digits(vec![5, 4, 3, 2, 1]), 54321);
 }
 
 #[test]
