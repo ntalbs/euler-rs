@@ -1,11 +1,12 @@
 use std::fs;
+use itertools::Itertools;
 
 fn read_names() -> Vec<String> {
     let contents = fs::read_to_string("./data/names.txt").unwrap();
     contents
         .split(',')
         .map(|s| s.replace("\"", ""))
-        .collect::<Vec<String>>()
+        .collect_vec()
 }
 
 fn score(name: &String) -> i64 {
