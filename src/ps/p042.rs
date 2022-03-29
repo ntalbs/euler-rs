@@ -1,6 +1,6 @@
-use std::{fs, collections::HashSet};
 use itertools::Itertools;
 use lazy_static::lazy_static;
+use std::{collections::HashSet, fs};
 
 lazy_static! {
     static ref TRIANGLE_NUMBERS: HashSet<i64> = triangle_nums(100);
@@ -25,14 +25,16 @@ fn is_triangle_number(n: &i64) -> bool {
 }
 
 fn read_words() -> Vec<String> {
-    fs::read_to_string("./data/words.txt").unwrap()
-    .split(",")
-    .map(|s| s.replace("\"", ""))
-    .collect_vec()
+    fs::read_to_string("./data/words.txt")
+        .unwrap()
+        .split(",")
+        .map(|s| s.replace("\"", ""))
+        .collect_vec()
 }
 
 pub fn sol() -> i64 {
-    read_words().iter()
+    read_words()
+        .iter()
         .map(|w| word_value(w))
         .filter(|v| is_triangle_number(v))
         .count() as i64

@@ -1,5 +1,5 @@
-use std::fs;
 use itertools::Itertools;
+use std::fs;
 
 fn read_names() -> Vec<String> {
     let contents = fs::read_to_string("./data/names.txt").unwrap();

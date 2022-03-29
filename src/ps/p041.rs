@@ -19,7 +19,7 @@ pub fn sol() -> i64 {
         return match find_prime(&digits[..i]) {
             Some(n) => n,
             None => continue,
-        }
+        };
     }
     panic!("Solution not found.");
 }
