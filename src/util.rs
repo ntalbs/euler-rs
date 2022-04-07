@@ -11,7 +11,7 @@ pub fn gcd(mut m: i64, mut n: i64) -> i64 {
         if m < n {
             std::mem::swap(&mut m, &mut n);
         }
-        m = m % n;
+        m %= n;
     }
     n
 }
