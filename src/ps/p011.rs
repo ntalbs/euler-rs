@@ -23,6 +23,7 @@ const INPUT:[[i64;20];20] = [
     [01, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 01, 89, 19, 67, 48]
 ];
 
+#[allow(clippy::needless_range_loop)]
 fn horizontal() -> i64 {
     let mut max = 0;
     for r in 0..20 {
