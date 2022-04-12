@@ -36,7 +36,7 @@ pub fn sol() -> i64 {
     read_words()
         .iter()
         .map(|w| word_value(w))
-        .filter(|v| is_triangle_number(v))
+        .filter(is_triangle_number)
         .count() as i64
 }
 

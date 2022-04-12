@@ -21,7 +21,7 @@ fn qs(n: i64) -> (i64, Vec<i64>, usize) {
 
 pub fn sol() -> i64 {
     (1..=1000)
-        .map(|n| qs(n))
+        .map(qs)
         .max_by_key(|&(_, _, cnt)| cnt)
         .unwrap()
         .0
