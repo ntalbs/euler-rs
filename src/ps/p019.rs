@@ -6,7 +6,7 @@ fn is_leap_year(year: u16) -> bool {
 }
 
 fn days_in_month(year: u16, month: u8) -> u8 {
-    assert!(1 <= month && month <= 12);
+    assert!((1..=12).contains(&month));
     match month {
         1 | 3 | 5 | 7 | 8 | 10 | 12 => 31,
         4 | 6 | 9 | 11 => 30,

@@ -2,7 +2,7 @@ use itertools::iproduct;
 use num::Rational64;
 
 fn digits(n: i64) -> (i64, i64) {
-    assert!(10 <= n && n < 100);
+    assert!((10..100).contains(&n));
     (n / 10, n % 10)
 }
 
