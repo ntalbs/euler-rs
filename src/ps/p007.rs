@@ -1,7 +1,7 @@
 use crate::util::Primes;
 
 pub fn sol() -> i64 {
-    Primes::new().skip(10000).next().unwrap()
+    Primes::new().nth(10000).unwrap()
 }
 
 #[test]
