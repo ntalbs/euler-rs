@@ -6,7 +6,7 @@ pub fn sol() -> i64 {
     let mut x: BigUint = 1.to_biguint().unwrap();
 
     for _ in 1..=1000 {
-        x = x * &two;
+        x *= &two;
     }
 
     let digits = digits(x);
