@@ -15,8 +15,7 @@ fn count_divisors(n: i64) -> i64 {
 pub fn sol() -> i64 {
     (1..)
         .map(triangular_number)
-        .skip_while(|n| count_divisors(*n) < 500)
-        .next()
+        .find(|n| count_divisors(*n) >= 500)
         .unwrap()
 }
 
