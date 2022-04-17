@@ -20,7 +20,7 @@ fn prod_concat(n: i64) -> String {
 pub fn sol() -> i64 {
     (1..9999)
         .rev()
-        .map(|n| prod_concat(n))
+        .map(prod_concat)
         .find(|n| is_pandigital(n))
         .unwrap()
         .parse::<i64>()

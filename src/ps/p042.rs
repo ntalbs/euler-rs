@@ -35,7 +35,7 @@ fn read_words() -> Vec<String> {
 pub fn sol() -> i64 {
     read_words()
         .iter()
-        .map(|w| word_value(w))
+        .map(word_value)
         .filter(is_triangle_number)
         .count() as i64
 }
