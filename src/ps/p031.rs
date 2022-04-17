@@ -14,13 +14,13 @@ fn value(n: i64) -> i64 {
 
 fn cc(amt: i64, n: i64) -> i64 {
     if amt == 0 {
-        return 1;
+        1
     } else if amt < 0 {
-        return 0;
+        0
     } else if n == 0 {
-        return 0;
+        0
     } else {
-        return cc(amt, n - 1) + cc(amt - value(n), n);
+        cc(amt, n - 1) + cc(amt - value(n), n)
     }
 }
 
