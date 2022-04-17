@@ -15,9 +15,7 @@ fn value(n: i64) -> i64 {
 fn cc(amt: i64, n: i64) -> i64 {
     if amt == 0 {
         1
-    } else if amt < 0 {
-        0
-    } else if n == 0 {
+    } else if amt < 0 || n == 0 {
         0
     } else {
         cc(amt, n - 1) + cc(amt - value(n), n)
