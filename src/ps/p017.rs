@@ -37,7 +37,7 @@ fn num2str(n: i64) -> String {
     ];
 
     let num2str_under_20 = |n: usize| -> String {
-        format!("{}", one_nineteen[n])
+        one_nineteen[n].to_string()
     };
 
     let num2str_under_100 = |n: usize| -> String {
