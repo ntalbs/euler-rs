@@ -28,7 +28,7 @@ pub fn sol() -> i64 {
     triangle.reverse();
     triangle[1..]
         .iter()
-        .fold(triangle[0].clone(), |ls, us| find_maxs(&ls, &us))[0]
+        .fold(triangle[0].clone(), |ls, us| find_maxs(&ls, us))[0]
 }
 
 #[test]
