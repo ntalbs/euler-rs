@@ -5,7 +5,7 @@ fn read_names() -> Vec<String> {
     let contents = fs::read_to_string("./data/names.txt").unwrap();
     contents
         .split(',')
-        .map(|s| s.replace("\"", ""))
+        .map(|s| s.replace('\"', ""))
         .collect_vec()
 }
 

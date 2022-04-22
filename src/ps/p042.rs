@@ -27,8 +27,8 @@ fn is_triangle_number(n: &i64) -> bool {
 fn read_words() -> Vec<String> {
     fs::read_to_string("./data/words.txt")
         .unwrap()
-        .split(",")
-        .map(|s| s.replace("\"", ""))
+        .split(',')
+        .map(|s| s.replace('\"', ""))
         .collect_vec()
 }
 
