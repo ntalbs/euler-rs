@@ -255,6 +255,12 @@ pub fn aliquot_sum(n: i64) -> i64 {
         - n
 }
 
+pub fn is_pentagonal(x: i64) -> bool {
+    let x = x as f64;
+    let n = (1.0 + (24.0 * x + 1.0).sqrt()) / 6.0;
+    n.fract() == 0.0
+}
+
 #[test]
 #[should_panic]
 fn test_gcd_0_x() {
@@ -411,4 +417,14 @@ fn test_count_digits() {
     assert_eq!(count_digits(1234567), 7);
 
     assert_eq!(count_digits(1234567.to_biguint().unwrap()), 7);
+}
+
+#[test]
+fn test_is_pentagonal() {
+    fn p(n: i64) -> i64 {
+        (3 * n * n - n) / 2
+    }
+
+    (1..=20).map(p).for_each(|n| assert!(is_pentagonal(n)));
+    (1..=20).map(p).for_each(|n| assert!(!is_pentagonal(n + 1)));
 }
