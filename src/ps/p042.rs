@@ -16,7 +16,7 @@ fn triangle_nums(limit: usize) -> HashSet<i64> {
     triangle_nums
 }
 
-fn word_value(w: &String) -> i64 {
+fn word_value(w: &str) -> i64 {
     w.chars().map(|c| c as i64 - 64).sum()
 }
 
@@ -35,7 +35,7 @@ fn read_words() -> Vec<String> {
 pub fn sol() -> i64 {
     read_words()
         .iter()
-        .map(word_value)
+        .map(|w| word_value(w.as_str()))
         .filter(is_triangle_number)
         .count() as i64
 }

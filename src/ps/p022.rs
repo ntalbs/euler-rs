@@ -9,7 +9,7 @@ fn read_names() -> Vec<String> {
         .collect_vec()
 }
 
-fn score(name: &String) -> i64 {
+fn score(name: &str) -> i64 {
     name.chars().map(|c| c as i64 - 64).sum()
 }
 
