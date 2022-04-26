@@ -31,7 +31,7 @@ pub fn sol() -> i64 {
         .iter()
         .permutations(9)
         .flat_map(|v| check(&v))
-        .filter_map(|x| x)
+        .flatten()
         .unique()
         .sum())
 }
