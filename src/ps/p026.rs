@@ -19,6 +19,7 @@ fn qs(n: i64) -> (i64, Vec<i64>, usize) {
     }
 }
 
+#[rustfmt::skip]
 pub fn sol() -> i64 {
     (1..=1000)
         .map(qs)

@@ -3,6 +3,7 @@
 
 const LIMIT: i64 = 1000;
 
+#[rustfmt::skip]
 fn sol_1() -> i64 {
     (1..LIMIT)
         .filter(|x| x % 3 == 0 || x % 5 == 0)
