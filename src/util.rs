@@ -112,7 +112,7 @@ impl Primes {
 
 impl Iterator for Primes {
     type Item = i64;
-    fn next(&mut self) -> Option<i64> {
+    fn next(&mut self) -> Option<Self::Item> {
         loop {
             if self.is_prime(self.next) {
                 let current = self.next;
