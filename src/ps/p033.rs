@@ -38,7 +38,7 @@ pub fn sol() -> i64 {
             }
             None => None,
         })
-        .inspect(|r| println!("{:?}", r))
+        .inspect(|r| println!("{r:?}"))
         .product::<Rational64>()
         .denom())
 }

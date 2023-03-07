@@ -14,7 +14,7 @@ fn check_pattern(v: &[&i64], n1: usize, n2: usize) -> Option<i64> {
     let c = from_digits(&v[(n1 + n2)..]);
 
     if a * b == c {
-        println!("{} x {} = {}", a, b, c);
+        println!("{a} x {b} = {c}");
         Some(c)
     } else {
         None

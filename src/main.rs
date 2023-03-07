@@ -9,7 +9,7 @@ fn time(f: fn() -> i64) {
     let start = Instant::now();
     let ret = f();
     println!("Elapsed time: {} ms", start.elapsed().as_millis());
-    println!("Answer: {}", ret);
+    println!("Answer: {ret}");
 }
 
 fn show_usage() {
@@ -85,7 +85,7 @@ fn main() {
         49 => ps::p049::sol,
         50 => ps::p050::sol,
         _ => {
-            eprintln!("Solution #{} not implemented yet", prob_no);
+            eprintln!("Solution #{prob_no} not implemented yet");
             process::exit(1);
         }
     };

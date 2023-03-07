@@ -46,7 +46,7 @@ fn num2str(n: i64) -> String {
         } else {
             let d1 = &deca[n / 10];
             let d2 = &one_nineteen[n % 10];
-            format!("{}{}", d1, d2)
+            format!("{d1}{d2}")
         }
     };
 
@@ -57,9 +57,9 @@ fn num2str(n: i64) -> String {
             let d1 = &one_nineteen[n / 100];
             let dr = num2str_under_100(n % 100);
             if dr.is_empty() {
-                format!("{}hundred", d1)
+                format!("{d1}hundred")
             } else {
-                format!("{}hundredand{}", d1, dr)
+                format!("{d1}hundredand{dr}")
             }
         }
     };
