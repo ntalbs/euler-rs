@@ -41,6 +41,7 @@ pub fn factorize(mut n: i64) -> BTreeMap<i64, i64> {
     ret
 }
 
+/// Returns true if a given number is palindrome.
 pub fn is_palindrome(mut n: i64) -> bool {
     fn count_digits(mut n: i64) -> i64 {
         let mut cnt = 1;
