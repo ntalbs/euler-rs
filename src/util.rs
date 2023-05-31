@@ -238,7 +238,7 @@ where
 {
     let ten = T::from_i8(10).unwrap();
     let mut count = 1;
-    while n > ten.clone() {
+    while n >= ten.clone() {
         count += 1;
         n /= ten.clone();
     }
@@ -418,6 +418,20 @@ fn test_count_digits() {
     assert_eq!(count_digits(1234567), 7);
 
     assert_eq!(count_digits(1234567.to_biguint().unwrap()), 7);
+}
+
+#[test]
+fn test_count_digits_1() {
+    for i in 0..10 {
+        assert_eq!(count_digits(i), 1);
+    }
+}
+
+#[test]
+fn test_count_digits_2() {
+    for i in 10..100 {
+        assert_eq!(count_digits(i), 2);
+    }
 }
 
 #[test]
