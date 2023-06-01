@@ -48,11 +48,10 @@ pub fn is_palindrome(mut n: i64) -> bool {
         loop {
             n /= 10;
             if n == 0 {
-                break;
+                return cnt;
             }
             cnt += 1;
         }
-        cnt
     }
 
     let mut num_digits = count_digits(n);
