@@ -48,3 +48,4 @@ pub(crate) mod p047;
 pub(crate) mod p048;
 pub(crate) mod p049;
 pub(crate) mod p050;
+pub(crate) mod p052;
