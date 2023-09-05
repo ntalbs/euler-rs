@@ -23,7 +23,7 @@ fn num2str(n: i64) -> String {
         "nineteen",
     ];
 
-    let deca = vec![
+    let deca = [
         "",
         "ten",
         "twenty",
