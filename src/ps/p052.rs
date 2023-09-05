@@ -17,7 +17,7 @@ fn are_all_same_digits(v: [i64; 6]) -> bool {
 
 pub fn sol() -> i64 {
     (1..)
-        .map(|x| [x * 1, x * 2, x * 3, x * 4, x * 5, x * 6])
+        .map(|x| [x, x * 2, x * 3, x * 4, x * 5, x * 6])
         .find(|xs| are_all_same_digits(*xs))
         .unwrap()[0]
 }
