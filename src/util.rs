@@ -244,6 +244,20 @@ where
     count
 }
 
+pub fn reverse<T: Num + Copy + DivAssign + FromPrimitive + PartialOrd>(mut n: T) -> T {
+    let ten = T::from_u8(10).unwrap();
+    let mut r = T::zero();
+    loop {
+        let d = n % ten;
+        r = r * ten + d;
+        n /= ten;
+        if n == T::zero() {
+            break;
+        }
+    }
+    r
+}
+
 pub fn aliquot_sum(n: i64) -> i64 {
     if n <= 1 {
         return 0;
@@ -431,6 +445,15 @@ fn test_count_digits_2() {
     for i in 10..100 {
         assert_eq!(count_digits(i), 2);
     }
+}
+
+#[test]
+fn test_reverse() {
+    assert_eq!(reverse(1), 1);
+    assert_eq!(reverse(12), 21);
+    assert_eq!(reverse(123), 321);
+    assert_eq!(reverse(1234), 4321);
+    assert_eq!(reverse(12345), 54321);
 }
 
 #[test]
