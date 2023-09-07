@@ -1,13 +1,13 @@
 use num::{bigint::ToBigUint, pow, BigUint, FromPrimitive, Num};
 use std::{
     collections::{BTreeMap, LinkedList},
-    ops::{Add, DivAssign, Mul},
+    ops::{Add, DivAssign, Mul, RemAssign},
 };
 
 /// Returns the greatest common divisor of m and n.
-pub fn gcd(mut m: i64, mut n: i64) -> i64 {
-    assert!(m != 0 && n != 0);
-    while m != 0 {
+pub fn gcd<T: Num + PartialOrd + RemAssign + Copy>(mut m: T, mut n: T) -> T {
+    assert!(m != T::zero() && n != T::zero());
+    while m != T::zero() {
         if m < n {
             std::mem::swap(&mut m, &mut n);
         }
@@ -17,7 +17,7 @@ pub fn gcd(mut m: i64, mut n: i64) -> i64 {
 }
 
 /// Returns the least common multiplier of m and n.
-pub fn lcm(m: i64, n: i64) -> i64 {
+pub fn lcm<T: Num + PartialOrd + RemAssign + Copy>(m: T, n: T) -> T {
     (m * n) / gcd(m, n)
 }
 
