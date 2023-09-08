@@ -42,28 +42,18 @@ pub fn factorize(mut n: i64) -> BTreeMap<i64, i64> {
 }
 
 /// Returns true if a given number is palindrome.
-pub fn is_palindrome(mut n: i64) -> bool {
-    fn count_digits(mut n: i64) -> i64 {
-        let mut cnt = 1;
-        loop {
-            n /= 10;
-            if n == 0 {
-                return cnt;
-            }
-            cnt += 1;
-        }
-    }
-
-    let mut num_digits = count_digits(n);
+pub fn is_palindrome<T: Num + PartialOrd + FromPrimitive + DivAssign + Clone>(mut n: T) -> bool {
+    let ten = T::from_i8(10).unwrap();
+    let mut num_digits = count_digits(n.clone());
 
     while num_digits > 1 {
-        let pow = pow(10, num_digits as usize - 1);
-        let msd = n / pow; // most significant digit
-        let lsd = n % 10; // least significant digit
+        let pow = pow(ten.clone(), num_digits - 1);
+        let msd = n.clone() / pow.clone(); // most significant digit
+        let lsd = n.clone() % ten.clone(); // least significant digit
         if msd != lsd {
             return false;
         }
-        n = (n % pow) / 10;
+        n = (n % pow) / ten.clone();
         num_digits -= 2;
     }
     true
