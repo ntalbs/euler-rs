@@ -5,7 +5,7 @@ use crate::util::digits;
 pub fn sol() -> i64 {
     iproduct!(1..100, 1..100)
         .map(|(a, b)| a.to_biguint().unwrap().pow(b))
-        .map(|x| digits::<BigUint, i64>(x))
+        .map(digits::<BigUint, i64>)
         .map(|ds| ds.iter().sum())
         .max()
         .unwrap()
