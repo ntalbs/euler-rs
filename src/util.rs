@@ -401,7 +401,10 @@ fn test_factorial() {
 fn test_digits() {
     assert_eq!(digits::<u64, u8>(12345_u64), vec![1, 2, 3, 4, 5]);
     assert_eq!(digits::<i32, i8>(54321_i32), vec![5, 4, 3, 2, 1]);
-    assert_eq!(digits::<BigUint, u8>(123456789.to_biguint().unwrap()), vec![1,2,3,4,5,6,7,8,9]);
+    assert_eq!(
+        digits::<BigUint, u8>(123456789.to_biguint().unwrap()),
+        vec![1, 2, 3, 4, 5, 6, 7, 8, 9]
+    );
 }
 
 #[test]

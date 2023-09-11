@@ -1,5 +1,5 @@
-use num::{rational::Ratio, BigUint, bigint::ToBigUint};
 use crate::util::count_digits;
+use num::{bigint::ToBigUint, rational::Ratio, BigUint};
 
 fn conv(a: Ratio<BigUint>) -> Ratio<BigUint> {
     let one = Ratio::new(1.to_biguint().unwrap(), 1.to_biguint().unwrap());
