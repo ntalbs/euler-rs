@@ -12,7 +12,6 @@ pub fn sol() -> i64 {
     const SIZE: i64 = 1001;
     iproduct!(1..=(SIZE / 2), 0..4)
         .map(|(n, k)| d(n, k))
-        .inspect(|n| println!("{n}"))
         .sum::<i64>()
         + 1
 }
