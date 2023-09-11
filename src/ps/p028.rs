@@ -1,11 +1,7 @@
 use itertools::iproduct;
 
-fn square(n: i64) -> i64 {
-    n * n
-}
-
 fn d(n: i64, k: i64) -> i64 {
-    2 * n * (k + 1) + square(2 * n - 1)
+    2 * n * (k + 1) + (2 * n - 1).pow(2)
 }
 
 pub fn sol() -> i64 {
