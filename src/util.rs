@@ -59,17 +59,18 @@ pub fn is_palindrome<T: Num + PartialOrd + FromPrimitive + DivAssign + Clone>(mu
     true
 }
 
+/// Primality test
+/// https://en.wikipedia.org/wiki/Primality_test
 #[rustfmt::skip]
 pub fn is_prime(n: i64) -> bool {
-    if n < 2 { return false; }
-    if n < 4 { return true; }
-    if n % 2 == 0 { return false; }
-    if n < 9 { return true; }
-    if n % 3 == 0 || n % 5 == 0 || n % 7 == 0 { return false; }
-    for i in (11..((n as f64).sqrt() as i64)).step_by(2)  {
-        if n % i == 0 {
+    if n == 2 || n == 3 { return true; }
+    if n <= 1 || n % 2 == 0 || n % 3 == 0 { return false; }
+    let mut i = 5;
+    while i * i <= n {
+        if n % i == 0 || n % (i + 2) == 0 {
             return false;
         }
+        i += 6;
     }
     true
 }
