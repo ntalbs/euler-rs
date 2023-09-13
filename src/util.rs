@@ -335,6 +335,14 @@ fn test_is_palindrome() {
 }
 
 #[test]
+fn test_is_prime() {
+    let sieve = Sieve::new(1000);
+    for x in 1..1000 {
+        assert_eq!(is_prime(x), sieve.is_prime(x as usize));
+    }
+}
+
+#[test]
 fn test_prime_iter() {
     let primes_under_20_ref: Vec<i64> = vec![2, 3, 5, 7, 11, 13, 17, 19];
     let primes_under_20_gen: Vec<i64> = Primes::new().take_while(|x| x < &20_i64).collect();
