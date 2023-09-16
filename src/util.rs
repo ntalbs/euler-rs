@@ -164,6 +164,13 @@ impl Sieve {
             }
         }
     }
+
+    pub fn primes(&self) -> Vec<u64> {
+        (2..self.limit)
+            .filter(|x| self.is_prime(*x))
+            .map(|x| x as u64)
+            .collect()
+    }
 }
 
 pub struct Fibonacci<T> {
