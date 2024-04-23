@@ -1,5 +1,5 @@
 pub fn sol() -> i64 {
-    const TARGET:i64 = 1000000000000;
+    const TARGET: i64 = 1_000_000_000_000;
     let next_b = |b: i64, n: i64| -> i64 { 3 * b + 2 * n - 2 };
     let next_n = |b: i64, n: i64| -> i64 { 4 * b + 3 * n - 3 };
 
