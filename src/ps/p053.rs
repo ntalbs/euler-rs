@@ -1,6 +1,7 @@
 use itertools::iproduct;
 use num::rational::Ratio;
 
+// compute combination C(n, r)
 fn c(n: u128, r: u128) -> u128 {
     if r > n {
         return 0;
