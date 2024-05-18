@@ -16,7 +16,7 @@ pub fn sol() -> i64 {
         let k = sorted_digits(c);
 
         #[warn(clippy::unwrap_or_default)]
-        m.entry(k.clone()).or_insert(vec![]).push(c);
+        m.entry(k.clone()).or_default().push(c);
 
         if m[&k].len() == 5 {
             return *m[&k].iter().min().unwrap();
