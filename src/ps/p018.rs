@@ -1,6 +1,6 @@
 use std::cmp::max;
 
-fn find_maxs(ls: &[i64], us: &[i64]) -> Vec<i64> {
+pub(crate) fn find_maxs(ls: &[i64], us: &[i64]) -> Vec<i64> {
     let sum1 = ls.iter().zip(us.iter()).map(|(a, b)| a + b);
     let sum2 = ls.iter().skip(1).zip(us.iter()).map(|(a, b)| a + b);
     sum1.zip(sum2).map(|(a, b)| max(a, b)).collect()

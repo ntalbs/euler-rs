@@ -58,6 +58,7 @@ pub(crate) mod p059;
 pub(crate) mod p060;
 pub(crate) mod p062;
 pub(crate) mod p063;
+pub(crate) mod p067;
 pub(crate) mod p085;
 pub(crate) mod p097;
 pub(crate) mod p099;
