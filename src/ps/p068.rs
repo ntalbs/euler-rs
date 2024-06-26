@@ -15,16 +15,13 @@ fn conv(perm: &Vec<&i32>) -> (i32, i32, i32, i32, i32, i32, i32, i32, i32, i32) 
 }
 
 pub fn sol() -> i64 {
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].iter()
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        .iter()
         .permutations(10)
         .filter(|perm| {
             let (a, b, c, d, e, f, g, h, i, j) = conv(&perm);
             let sum = a + b + c;
-            a + b + c == sum
-            && d + c + e == sum
-            && f + e + g == sum
-            && h + g + i == sum
-            && j + i + b == sum
+            d + c + e == sum && f + e + g == sum && h + g + i == sum && j + i + b == sum
         })
         .filter(|perm| {
             let (a, _, _, d, _, f, _, h, _, j) = conv(&perm);
@@ -36,7 +33,8 @@ pub fn sol() -> i64 {
         })
         .filter(|s| s.len() == 16)
         .map(|s| s.parse::<i64>().unwrap())
-        .max().unwrap()
+        .max()
+        .unwrap()
 }
 
 #[test]
