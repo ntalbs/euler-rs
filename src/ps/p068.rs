@@ -1,7 +1,5 @@
 use itertools::{self, Itertools};
 
-use crate::util::from_digits;
-
 fn conv(perm: &Vec<&i32>) -> (i32, i32, i32, i32, i32, i32, i32, i32, i32, i32) {
     let a = *perm[0];
     let b = *perm[1];
