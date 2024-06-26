@@ -27,7 +27,7 @@ pub fn sol() -> i64 {
             && j + i + b == sum
         })
         .filter(|perm| {
-            let (a, b, c, d, e, f, g, h, i, j) = conv(&perm);
+            let (a, _, _, d, _, f, _, h, _, j) = conv(&perm);
             a == *[a, d, f, h, j].iter().min().unwrap()
         })
         .map(|perm| {
