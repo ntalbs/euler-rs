@@ -19,7 +19,7 @@ pub fn sol() -> i64 {
     .filter(|(m, n, k)| m + n + k <= LIMIT)
     .map(|(m, n, k)| m + n + k)
     .sorted()
-    .group_by(|p| *p)
+    .chunk_by(|p| *p)
     .into_iter()
     .map(|(key, group)| (key, group.count()))
     .max_by_key(|&(_, count)| count)
