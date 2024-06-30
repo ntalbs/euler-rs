@@ -1,6 +1,6 @@
 use itertools::{self, Itertools};
 
-fn conv(perm: &Vec<&i32>) -> (i32, i32, i32, i32, i32, i32, i32, i32, i32, i32) {
+fn conv(perm: &[&i32]) -> (i32, i32, i32, i32, i32, i32, i32, i32, i32, i32) {
     let a = *perm[0];
     let b = *perm[1];
     let c = *perm[2];
