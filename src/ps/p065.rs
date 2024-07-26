@@ -24,7 +24,6 @@ pub fn sol() -> i64 {
         .map(|&n| BigRational::from(BigInt::from(n)))
         .fold(init, f);
     let nu = binding.numer();
-    println!(">>>>> {}", nu);
     digits(nu.clone()).iter().sum()
 }
 
