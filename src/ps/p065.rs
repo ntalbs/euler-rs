@@ -22,7 +22,7 @@ pub fn sol() -> i64 {
     let binding = xs[1..]
         .iter()
         .map(|&n| BigRational::from(BigInt::from(n)))
-        .fold(init, |acc, x| f(acc, x));
+        .fold(init, f);
     let nu = binding.numer();
     println!(">>>>> {}", nu);
     digits(nu.clone()).iter().sum()

@@ -23,7 +23,7 @@ fn expand_continued_fraction(n :i64) -> Vec<i64> {
 pub fn sol() -> i64 {
     (2..=10_000)
         .filter(|&n| !is_square_num(n))
-        .map(|n| expand_continued_fraction(n))
+        .map(expand_continued_fraction)
         .filter(|v| v.len() % 2 == 0)
         .count() as i64
 }
