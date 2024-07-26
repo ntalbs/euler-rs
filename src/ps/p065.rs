@@ -1,4 +1,4 @@
-use num::{traits::ConstZero, BigInt, BigRational, FromPrimitive};
+use num::{BigInt, BigRational};
 
 use crate::util::digits;
 
