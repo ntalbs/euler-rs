@@ -93,6 +93,7 @@ fn main() {
         58 => ps::p058::sol,
         59 => ps::p059::sol,
         60 => ps::p060::sol,
+        61 => ps::p061::sol,
         62 => ps::p062::sol,
         63 => ps::p063::sol,
         64 => ps::p064::sol,
